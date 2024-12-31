@@ -18,11 +18,10 @@
   users.users.box = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; 
-    packages = with pkgs; [
-    ];
   };
 
   environment.systemPackages = with pkgs; [
+    gcc
 # window manager
     hyprland
     waybar
@@ -40,6 +39,7 @@
     authenticator
     thunderbird
 # utils
+    git
     playerctl
     brightnessctl
     wl-clipboard

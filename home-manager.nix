@@ -10,4 +10,24 @@ in
   home-manager.users.box = {
     home.stateVersion = "18.09";
   };
+
+  home.packages = with pkgs; [ 
+    yt-dlp
+    spotdl
+    cmus
+    alsa-utils
+
+    _7zz
+    gnutar
+
+    ripgrep-all
+    coreutils-full
+    slurp
+    grim
+
+    python3
+    gdb
+    clang
+    clang-tools
+  ];
 }
