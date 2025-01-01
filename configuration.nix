@@ -20,10 +20,10 @@
     extraGroups = [ "wheel" ]; 
   };
 
+  programs.hyprland.enable = true;
   environment.systemPackages = with pkgs; [
     gcc
 # window manager
-    hyprland
     waybar
 # terminal utils
     alacritty
