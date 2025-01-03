@@ -99,6 +99,7 @@
 	  };
   };
 
+  services.blueman.enable = true;
   hardware = {
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
@@ -144,5 +145,6 @@
 
   # DO NOT TOUCH
   system.stateVersion = "24.11"; # Did you read the comment?
+
 }
 

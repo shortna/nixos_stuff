@@ -7,6 +7,7 @@
   home.stateVersion = "24.11";
 
   fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [ 
     yt-dlp
     spotdl
@@ -41,9 +42,8 @@
     wine64
     ];
 
-  # Let Home Manager install and manage itself.
+# Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -72,6 +72,8 @@
     enable = true;
     clock24 = true;
     extraConfig = ''
+      set -g default-terminal "screen-256color"
+      set-option -a terminal-features 'alacritty:RGB'
       set -g history-limit 65536
 
       set -g prefix C-j
