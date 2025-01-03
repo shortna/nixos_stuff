@@ -3,11 +3,10 @@
   home.username = "box";
   home.homeDirectory = "/home/box";
 
-# DO NOT TOUCH
+  # DO NOT TOUCH
   home.stateVersion = "24.11";
 
   fonts.fontconfig.enable = true;
-# Let Home Manager install and manage itself.
   home.packages = with pkgs; [ 
     yt-dlp
     spotdl
@@ -42,7 +41,9 @@
     wine64
     ];
 
+  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
