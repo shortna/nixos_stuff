@@ -21,6 +21,8 @@
     fzf
     coreutils-full
 
+    ninja
+    cmake
     gnumake
     python3
     gdb
