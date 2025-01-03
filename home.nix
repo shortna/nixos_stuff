@@ -9,36 +9,42 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [ 
+# stuff
     yt-dlp
     spotdl
     alsa-utils
-
+# command line utils
     _7zz
     gnutar
-
     ripgrep-all
     ripgrep
     fzf
-    coreutils-full
-
+# build systems
     ninja
     cmake
     gnumake
-    python3
-    gdb
+# compilers, interpreters, debuggers ...
     clang
-    lua-language-server
+    ghc
+    python3
+    lua
+    coreutils-full
+    gdb
+# lsps
     clang-tools
+    lua-language-server
+    haskell-language-server
+# programming tools and stuff
     tmux
-
+# sometimes needed
     slurp
     grim
     fastfetch
-
+# configuration
     adwaita-icon-theme
     nerdfonts
     gohufont
-
+# games
     wine64
     ];
 
@@ -65,7 +71,7 @@
 
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
+    enableFishIntegration = true;
   };
 
   programs.tmux = {
