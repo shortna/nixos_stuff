@@ -1,15 +1,17 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      <home-manager/nixos>
-    ];
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  # flakes
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -27,39 +29,50 @@
   programs.hyprland.enable = true;
   programs.fish.enable = true;
   programs.neovim = {
-	  enable = true;
-	  defaultEditor = true;
+    enable = true;
+    defaultEditor = true;
   };
 
   fonts.packages = with pkgs; [
-    terminus-nerdfont
+    nerdfonts
+    gohufont
   ];
 
   documentation.dev.enable = true;
   environment.systemPackages = with pkgs; [
-    home-manager
+    alacritty
+
+    # development
+    qemu
+    qemu-utils
     gcc
-    man 
+    man
     man-pages
     man-pages-posix
-# terminal utils
-    alacritty
     wget
     curl
-# browsers
+    git
+    coreutils-full
+    busybox
+
+    # browsers
     firefox
     librewolf
-# apps
+
+    # apps
     steam
     gnome-secrets
     pcmanfm
     thunderbird
-# utils
+
+    # music
     mpd-mpris
-    waybar
-    git
     mpc
     playerctl
+    alsa-utils
+
+    # sutff
+    waybar
     brightnessctl
     wl-clipboard
     swww
@@ -68,50 +81,54 @@
 
   users.users.box = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
     shell = pkgs.fish;
   };
 
   # MPD
   services.mpd = {
-	  enable = true;
-	  musicDirectory = "/home/box/music";
-	  extraConfig = ''
-		  audio_output {
-			  type "pipewire"
-			  name "My PipeWire Output"
-		  }
-	  '';
-	  user = "box";
+    enable = true;
+    musicDirectory = "/home/box/music";
+    extraConfig = ''
+      		  audio_output {
+      			  type "pipewire"
+      			  name "My PipeWire Output"
+      		  }
+      	  '';
+    user = "box";
   };
 
   systemd.services.mpd.environment = {
-	  XDG_RUNTIME_DIR = "/run/user/1000";
+    XDG_RUNTIME_DIR = "/run/user/1000";
   };
 
   # make playerctl work with mpd
   systemd.user.services.mpd-mpris = {
-	  description = "MPD MPRIS Interface";
-	  wantedBy = [ "default.target" ];
-	  serviceConfig = {
-		  ExecStart = "${pkgs.mpd-mpris}/bin/mpd-mpris";
-		  Restart = "on-failure";
-	  };
+    description = "MPD MPRIS Interface";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.mpd-mpris}/bin/mpd-mpris";
+      Restart = "on-failure";
+    };
   };
 
   services.blueman.enable = true;
+
   hardware = {
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
 
     graphics = {
-        enable = true;
-        enable32Bit = true;
+      enable = true;
+      enable32Bit = true;
     };
 
     amdgpu.amdvlk = {
-        enable = true;
-        support32Bit.enable = true;
+      enable = true;
+      support32Bit.enable = true;
     };
   };
 
@@ -135,16 +152,10 @@
   # Enable touchpad support
   services.libinput = {
     enable = true;
-    touchpad.tapping = false;
+    touchpad.tapping = true;
   };
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
 
   # DO NOT TOUCH
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
-

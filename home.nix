@@ -1,77 +1,83 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  ...
+}:
+{
+  programs.home-manager.enable = true;
+
+  home.stateVersion = "24.11";
+
   home.username = "box";
   home.homeDirectory = "/home/box";
 
-  # DO NOT TOUCH
-  home.stateVersion = "24.11";
+  gtk.enable = true;
 
-  fonts.fontconfig.enable = true;
+  catppuccin = {
+    gtk = {
+      enable = true;
+      flavor = "latte";
+      accent = "lavender";
+    };
+  };
 
-  home.packages = with pkgs; [ 
-# stuff
-    yt-dlp
-    spotdl
-    alsa-utils
-# command line utils
+  home.packages = with pkgs; [
+    nix-index
+    # command line utils
+    tmux
+    parallel-full
     _7zz
     gnutar
-    ripgrep-all
     ripgrep
     fzf
-# build systems
+    # build systems
     ninja
     cmake
     gnumake
-# compilers, interpreters, debuggers ...
+    autoconf
+    automake
+    cargo
+    cabal-install
+    # compilers, interpreters, debuggers ...
     clang
+    rustc
     ghc
     python3
     lua
-    coreutils-full
     gdb
-# lsps
+    # lsps
+    nixfmt-rfc-style
+    nixd
     clang-tools
     lua-language-server
     haskell-language-server
-# programming tools and stuff
-    tmux
-# sometimes needed
+    # sometimes needed
     slurp
     grim
     fastfetch
-# configuration
+    # configuration
     adwaita-icon-theme
-    nerdfonts
-    gohufont
-# games
+    # games
     wine64
-    ];
+  ];
 
-# Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
+      set -U fish_prompt_pwd_dir_length 0
       fish_vi_key_bindings
     '';
 
     shellAliases = {
       la = "ls -lAh --group-directories-first --color=auto";
       ls = "ls --group-directories-first --color=auto";
-      cdp = "cd ~-";
+      cdp = "cd -";
       cl = "clear -x";
       so = "source";
       cdb = "cd ..";
       battery = "echo $(\cat /sys/class/power_supply/BAT1/capacity)%";
       vim = "nvim";
     };
-  };
-
-  programs.starship = {
-    enable = true;
-    enableFishIntegration = true;
   };
 
   programs.tmux = {
@@ -104,6 +110,6 @@
 
       set -sg escape-time 10
       set -g focus-events on
-      '';
+    '';
   };
 }
