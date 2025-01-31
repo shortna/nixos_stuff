@@ -23,28 +23,15 @@
   time.timeZone = "Europe/Kyiv";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  nixpkgs.config.allowUnfree = true;
-
-  programs.firefox.enable = true;
-  programs.hyprland.enable = true;
-  programs.fish.enable = true;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-
   fonts.packages = with pkgs; [
-    nerdfonts
     gohufont
   ];
 
   documentation.dev.enable = true;
+  nixpkgs.config.allowUnfree = true;
+  programs.fish.enable = true;
+  programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
-    alacritty
-
-    # development
-    qemu
-    qemu-utils
     gcc
     man
     man-pages
@@ -54,29 +41,7 @@
     git
     coreutils-full
     busybox
-
-    # browsers
-    firefox
-    librewolf
-
-    # apps
-    steam
-    gnome-secrets
-    pcmanfm
-    thunderbird
-
-    # music
-    mpd-mpris
-    mpc
-    playerctl
-    alsa-utils
-
-    # sutff
-    waybar
-    brightnessctl
-    wl-clipboard
-    swww
-    bemenu
+    socat
   ];
 
   users.users.box = {
@@ -85,7 +50,6 @@
       "wheel"
       "networkmanager"
     ];
-    shell = pkgs.fish;
   };
 
   # MPD

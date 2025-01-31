@@ -2,33 +2,155 @@
   pkgs,
   ...
 }:
+
+let 
+  nvimConfig = import ./configs/nvim_config.nix;
+  waybarConfig = import ./configs/waybar_config.nix;
+  hyprlandConfig =import ./configs/hyprland_config.nix;
+in
 {
   programs.home-manager.enable = true;
 
   home.stateVersion = "24.11";
-
   home.username = "box";
   home.homeDirectory = "/home/box";
 
-  gtk.enable = true;
+  gtk = {
+    enable = true;
+
+    theme = {
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "lavender" ];
+        variant = "latte";
+        size = "compact";
+      };
+      name = "catppuccin-latte-lavender-compact";
+    };
+
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+
+    font = {
+      name = "GohuFont";
+      size = 11;
+    };
+
+    gtk4.extraCss = ''* { font-weight: bold; }'';
+    gtk3.extraCss = ''* { font-weight: bold; }'';
+  };
 
   catppuccin = {
-    gtk = {
-      enable = true;
-      flavor = "latte";
-      accent = "lavender";
+    flavor = "latte";
+    accent = "lavender";
+    fish.enable = true;
+    alacritty.enable = true;
+    waybar.enable = true;
+    hyprland.enable = true;
+  };
+
+  programs.firefox.enable = true;
+  programs.librewolf.enable = true;
+  wayland.windowManager.hyprland = {
+    enable = true;
+    extraConfig = hyprlandConfig.config;
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-path
+      cmp-buffer
+      nvim-treesitter.withAllGrammars
+      vim-airline
+      plenary-nvim
+      telescope-nvim
+      vim-fugitive
+      undotree
+      vim-slime
+      catppuccin-nvim
+    ];
+    extraLuaConfig = nvimConfig.config;
+    vimAlias = true;
+    withRuby = false;
+    withNodeJs = false;
+    withPython3 = false;
+  };
+
+  programs.waybar = {
+    enable = true;
+    style = waybarConfig.style;
+    settings.mainBar = waybarConfig.config;
+  };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      window = {
+        dynamic_padding = true;
+        opacity = 1;
+        blur = false;
+      };
+      general = {
+        live_config_reload = true;
+      };
+      font = {
+        normal = {
+          family = "GohuFont";
+          style = "Bold";
+        };
+        italic = {
+          family = "GohuFont";
+          style = "Bold";
+        };
+        bold = {
+          family = "GohuFont";
+          style = "Bold";
+        };
+        size = 11;
+      };
+      mouse = {
+        hide_when_typing = true;
+      };
     };
   };
 
   home.packages = with pkgs; [
-    nix-index
-    # command line utils
-    tmux
+    # apps
+    steam
+    gnome-secrets
+    pcmanfm
+    thunderbird
+
+    # sutff
+    brightnessctl
+    wl-clipboard
+    swww
+    bemenu
+    slurp
+    grim
+    fastfetch
+
+    # music
+    mpd-mpris
+    mpc
+    playerctl
+    alsa-utils
+
+    # DEVELOPMENT
+    qemu
+    clang-manpages
     parallel-full
     _7zz
     gnutar
     ripgrep
     fzf
+
     # build systems
     ninja
     cmake
@@ -37,26 +159,26 @@
     automake
     cargo
     cabal-install
+
     # compilers, interpreters, debuggers ...
+    lld
+    libllvm
     clang
     rustc
     ghc
     python3
     lua
     gdb
+
     # lsps
     nixfmt-rfc-style
     nixd
     clang-tools
     lua-language-server
     haskell-language-server
-    # sometimes needed
-    slurp
-    grim
-    fastfetch
-    # configuration
+
+    # misc
     adwaita-icon-theme
-    # games
     wine64
   ];
 
@@ -65,6 +187,7 @@
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       set -U fish_prompt_pwd_dir_length 0
+      fish_config prompt choose informative_vcs
       fish_vi_key_bindings
     '';
 
