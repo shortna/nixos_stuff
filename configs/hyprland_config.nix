@@ -3,7 +3,7 @@
     monitor=,1920x1080@60,0x0,1
     $terminal = alacritty
     $fileManager = pcmanfm
-    $menu = bemenu-run
+    $menu = rofi -show drun
     env = XCURSOR_THEME,Adwaita
     env = HYPRCURSOR_THEME,Adwaita
     exec-once = waybar

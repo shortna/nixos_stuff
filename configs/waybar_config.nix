@@ -4,7 +4,7 @@
       font-family: "GohuFont";
       font-weight: bold;
       font-size: 11pt;
-      color: @base;
+      color: @text;
       border-radius: 10px;
     }
 
@@ -15,7 +15,7 @@
     .modules-left, 
     .modules-center, 
     .modules-right {
-      background: @text;
+      background: @base;
     }
 
     .modules-center,
@@ -29,11 +29,6 @@
 
     #custom-arrow {
       color:  @lavender;
-    }
-
-    #tray menu {
-      background: @text;
-      color: @base;
     }
   '';
 
@@ -56,8 +51,6 @@
       "battery"
       "custom/arrow"
       "clock"
-      "custom/arrow"
-      "tray"
     ];
 
     margin-top = 5;
@@ -91,11 +84,6 @@
       unknown-tag = "N/A";
       interval = 2;
       tooltip = false;
-    };
-
-    "tray" = {
-      icon-size = 21;
-      spacing = 10;
     };
 
     "clock" = {

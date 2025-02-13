@@ -21,15 +21,14 @@
     opt.wrapscan = false
 
     -- fold stuff
-    vim.wo.foldmethod = 'manual'
+    opt.foldmethod = "expr"
+    opt.foldexpr = "nvim_treesitter#foldexpr()"
 
     -- indent stuff
-    opt.expandtab = true
+    opt.expandtab = false
+    opt.tabstop = 8
     opt.shiftwidth = 2
-    opt.tabstop = 2
     opt.softtabstop = 2
-    opt.cindent = true
-    opt.cinoptions = "1s"
 
     -- menu stuff
     opt.wildmenu = true
@@ -153,6 +152,13 @@
       filetypes = { 'haskell', 'lhaskell', 'cabal' },
       cmd = { "haskell-language-server-wrapper", "--lsp" },
       capabilities = capabilities,
+      settings = {
+        haskell = {
+          plugin = {
+            rename = { config = { crossModule = true }}
+          }
+        }
+      }
     })
 
     lspconfig.nixd.setup({

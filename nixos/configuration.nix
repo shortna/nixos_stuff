@@ -22,6 +22,11 @@
 
   time.timeZone = "Europe/Kyiv";
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = [
+   "uk_UA.UTF-8/UTF-8"
+   "C.UTF-8/UTF-8"
+   "en_US.UTF-8/UTF-8"
+  ];
 
   fonts.packages = with pkgs; [
     gohufont
@@ -31,7 +36,24 @@
   nixpkgs.config.allowUnfree = true;
   programs.fish.enable = true;
   programs.dconf.enable = true;
+
+  programs.hyprland = { 
+    enable = true;
+    xwayland.enable = true;
+  };
+
+# virtualization
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["box"];
+  virtualisation.libvirtd.enable = true;
+  services.qemuGuest.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  services.spice-vdagentd.enable = true;
+
   environment.systemPackages = with pkgs; [
+    qemu
+    glibcLocalesUtf8
+    glibcLocales
     gcc
     man
     man-pages
@@ -44,6 +66,7 @@
     socat
   ];
 
+  users.defaultUserShell = pkgs.fish;
   users.users.box = {
     isNormalUser = true;
     extraGroups = [
@@ -88,6 +111,8 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      package = pkgs.mesa.drivers;
+      package32 = pkgs.pkgsi686Linux.mesa.drivers;
     };
 
     amdgpu.amdvlk = {

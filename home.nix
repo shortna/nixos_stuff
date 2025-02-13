@@ -3,10 +3,10 @@
   ...
 }:
 
-let 
+let
   nvimConfig = import ./configs/nvim_config.nix;
   waybarConfig = import ./configs/waybar_config.nix;
-  hyprlandConfig =import ./configs/hyprland_config.nix;
+  hyprlandConfig = import ./configs/hyprland_config.nix;
 in
 {
   programs.home-manager.enable = true;
@@ -52,8 +52,11 @@ in
 
   programs.firefox.enable = true;
   programs.librewolf.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
+    package = pkgs.hyprland;
     extraConfig = hyprlandConfig.config;
   };
 
@@ -131,9 +134,9 @@ in
     brightnessctl
     wl-clipboard
     swww
-    bemenu
     slurp
     grim
+    rofi
     fastfetch
 
     # music
@@ -143,7 +146,6 @@ in
     alsa-utils
 
     # DEVELOPMENT
-    qemu
     clang-manpages
     parallel-full
     _7zz
@@ -166,9 +168,10 @@ in
     clang
     rustc
     ghc
-    python3
+    python39
     lua
     gdb
+    lldb
 
     # lsps
     nixfmt-rfc-style
@@ -195,6 +198,7 @@ in
       la = "ls -lAh --group-directories-first --color=auto";
       ls = "ls --group-directories-first --color=auto";
       cdp = "cd -";
+      scd = "fzf-cd-widget";
       cl = "clear -x";
       so = "source";
       cdb = "cd ..";
