@@ -23,9 +23,9 @@
   time.timeZone = "Europe/Kyiv";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales = [
-   "uk_UA.UTF-8/UTF-8"
-   "C.UTF-8/UTF-8"
-   "en_US.UTF-8/UTF-8"
+    "uk_UA.UTF-8/UTF-8"
+    "C.UTF-8/UTF-8"
+    "en_US.UTF-8/UTF-8"
   ];
 
   fonts.packages = with pkgs; [
@@ -37,14 +37,14 @@
   programs.fish.enable = true;
   programs.dconf.enable = true;
 
-  programs.hyprland = { 
+  programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
-# virtualization
+  # virtualization
   programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = ["box"];
+  users.groups.libvirtd.members = [ "box" ];
   virtualisation.libvirtd.enable = true;
   services.qemuGuest.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;

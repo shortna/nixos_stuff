@@ -4,7 +4,7 @@
 }:
 
 let
-  nvimConfig = import ./configs/nvim_config.nix;
+  nvimConfig = import ./configs/nvim_config.nix {};
   waybarConfig = import ./configs/waybar_config.nix;
   hyprlandConfig = import ./configs/hyprland_config.nix;
 in
@@ -77,6 +77,7 @@ in
       undotree
       vim-slime
       catppuccin-nvim
+      nvim-dap
     ];
     extraLuaConfig = nvimConfig.config;
     vimAlias = true;
@@ -96,7 +97,7 @@ in
     settings = {
       window = {
         dynamic_padding = true;
-        opacity = 1;
+        opacity = 0.95;
         blur = false;
       };
       general = {
@@ -138,6 +139,8 @@ in
     grim
     rofi
     fastfetch
+    yt-dlp
+    spotdl
 
     # music
     mpd-mpris
@@ -152,6 +155,7 @@ in
     gnutar
     ripgrep
     fzf
+    valgrind
 
     # build systems
     ninja
@@ -161,6 +165,7 @@ in
     automake
     cargo
     cabal-install
+    stack
 
     # compilers, interpreters, debuggers ...
     lld
@@ -172,6 +177,8 @@ in
     lua
     gdb
     lldb
+    haskellPackages.haskell-debug-adapter
+    haskellPackages.ghci-dap
 
     # lsps
     nixfmt-rfc-style
