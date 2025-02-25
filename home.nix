@@ -163,7 +163,6 @@ in
     gnumake
     autoconf
     automake
-    cargo
     cabal-install
     stack
 
@@ -171,7 +170,6 @@ in
     lld
     libllvm
     clang
-    rustc
     ghc
     python39
     lua

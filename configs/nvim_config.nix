@@ -164,6 +164,16 @@ let
       capabilities = capabilities,
     })
 
+    lspconfig.rust_analyzer.setup{
+      settings = {
+	['rust-analyzer'] = {
+	  diagnostics = {
+	    enable = false;
+	  }
+	}
+      }
+    }
+
     lspconfig.hls.setup({
       filetypes = { 'haskell', 'lhaskell', 'cabal' },
       cmd = { "haskell-language-server-wrapper", "--lsp" },
