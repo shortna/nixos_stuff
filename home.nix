@@ -130,7 +130,7 @@ in
 
     # misc
     adwaita-icon-theme
-    wine64
+    wine
   ];
 
   programs.fish = {
