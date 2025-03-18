@@ -29,6 +29,11 @@
         layout = dwindle 
     }
 
+    dwindle {
+        force_split = 2	
+        preserve_split = true
+    }
+
     decoration {
         rounding = 10
         shadow {
@@ -101,6 +106,7 @@
     bind = $mainMod SHIFT, l, movewindow, r
     bind = $mainMod SHIFT, k, movewindow, u
     bind = $mainMod SHIFT, j, movewindow, d
+    bind = $mainMod SHIFT, Return, togglesplit
 
     bind = $mainMod, 1, workspace, 1
     bind = $mainMod, 2, workspace, 2
