@@ -30,8 +30,8 @@
     }
 
     dwindle {
-        force_split = 2	
         preserve_split = true
+	pseudotile = true 
     }
 
     decoration {
@@ -106,7 +106,8 @@
     bind = $mainMod SHIFT, l, movewindow, r
     bind = $mainMod SHIFT, k, movewindow, u
     bind = $mainMod SHIFT, j, movewindow, d
-    bind = $mainMod SHIFT, Return, togglesplit
+    bind = $mainMod SHIFT, Return, swapsplit
+    bind = $mainMod, t, togglesplit
 
     bind = $mainMod, 1, workspace, 1
     bind = $mainMod, 2, workspace, 2
