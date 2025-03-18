@@ -26,11 +26,7 @@
 
         resize_on_border = true 
         allow_tearing = false
-        layout = master 
-    }
-
-    master {
-      mfact = 0.50
+        layout = dwindle 
     }
 
     decoration {
