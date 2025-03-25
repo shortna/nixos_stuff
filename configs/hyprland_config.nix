@@ -3,7 +3,7 @@
 {
   config = ''
     monitor=,1920x1080@60,0x0,1
-    $terminal = alacritty 
+    $terminal = kitty
     $fileManager = pcmanfm
     $menu = bemenu-run
     env = XCURSOR_THEME,Adwaita
@@ -21,8 +21,8 @@
         gaps_out = 10
         border_size = 3
 
-        col.active_border = $lavender
-        col.inactive_border = $base
+        col.active_border = rgb(d33682)
+        col.inactive_border = rgb(eee8d5)
 
         resize_on_border = true 
         allow_tearing = false

@@ -4,7 +4,6 @@
 }:
 let
   font_name = "JetBrainsMono Nerd Font Mono";
-  nvim = import ./configs/nvim_config.nix { };
   waybar = import ./configs/waybar_config.nix { inherit font_name; };
   hyprland = import ./configs/hyprland_config.nix { };
 in
@@ -18,15 +17,6 @@ in
   gtk = {
     enable = true;
 
-    theme = {
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "lavender" ];
-        variant = "latte";
-        size = "compact";
-      };
-      name = "catppuccin-latte-lavender-compact";
-    };
-
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
@@ -39,15 +29,6 @@ in
 
     gtk4.extraCss = ''* { font-weight: normal; }'';
     gtk3.extraCss = ''* { font-weight: normal; }'';
-  };
-
-  catppuccin = {
-    flavor = "latte";
-    accent = "lavender";
-    fish.enable = true;
-    alacritty.enable = true;
-    waybar.enable = true;
-    hyprland.enable = true;
   };
 
   programs.firefox.enable = true;
@@ -65,35 +46,14 @@ in
     settings.mainBar = waybar.config;
   };
 
-  programs.alacritty = {
+  programs.kitty = {
     enable = true;
+    font = { name = font_name; size = 11; };
+    themeFile = "Solarized_Light";
     settings = {
-      window = {
-        dynamic_padding = true;
-        opacity = 0.95;
-        blur = false;
-      };
-      general = {
-        live_config_reload = true;
-      };
-      font = {
-        normal = {
-          family = font_name;
-	  style = "Regular";
-        };
-        italic = {
-          family = font_name;
-	  style = "Regular";
-        };
-        bold = {
-          family = font_name;
-	  style = "Regular";
-        };
-        size = 11;
-      };
-      mouse = {
-        hide_when_typing = true;
-      };
+      enable_audio_bell = false;
+      mouse_hide_wait = 2;
+      copy_on_select = "yes";
     };
   };
 
@@ -159,7 +119,8 @@ in
     clock24 = true;
     extraConfig = ''
       set -g default-terminal "screen-256color"
-      set-option -a terminal-features 'alacritty:RGB'
+      set-option -sa terminal-overrides ",xterm-kitty:RGB"
+
       set -g history-limit 65536
 
       set -g prefix C-j

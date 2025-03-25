@@ -1,25 +1,5 @@
 {
   "nodes": {
-    "catppuccin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1742599566,
-        "narHash": "sha256-xr6ntmiUPXSh9o9mJ7og9vxALMQs1EQhIhWUAO2D1M0=",
-        "owner": "catppuccin",
-        "repo": "nix",
-        "rev": "5e303e8d7e251868fa79f83bbda69da90aa62402",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "nix",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -27,8 +7,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1742825959,
-        "narHash": "sha256-wgnQZMrLLQJlZ+htTXzoQtoz9EzL15Z2crH3+OnRmMk=",
+        "lastModified": 1742926508,
+        "narHash": "sha256-wgfY302ZaOsBCXb8aZDTG3Zt2kg3jDDaRrmtUw8nz00=",
         "type": "tarball",
         "url": "https://github.com/nix-community/home-manager/archive/master.tar.gz"
       },
@@ -55,7 +35,6 @@
     },
     "root": {
       "inputs": {
-        "catppuccin": "catppuccin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
       }

@@ -2,6 +2,26 @@
   pkgs,
   ...
 }:
+let
+  vimPkg =  ((pkgs.vim_configurable.override {  }).customize{
+      name = "vim";
+      vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
+        start = [ solarized ];
+        opt = [];
+      };
+      vimrcConfig.customRC = ''
+      set termguicolors
+      set relativenumber
+      set nowrap
+      set incsearch
+      set hlsearch
+      syntax enable
+      set background=light
+      colorscheme solarized
+      '';
+    }
+  );
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -50,9 +70,11 @@
     xwayland.enable = true;
   };
 
+  environment.variables = { EDITOR = "vim"; };
+
   fonts.packages = with pkgs; [nerd-fonts.jetbrains-mono];
   environment.systemPackages = with pkgs; [
-    vim
+    vimPkg
     glibcLocalesUtf8
     glibcLocales
     qemu

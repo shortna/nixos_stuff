@@ -5,7 +5,7 @@
     * {
       font-family: "${font_name}";
       font-size: 11pt;
-      color: @text;
+      color: #073642;
       border-radius: 10px;
     }
 
@@ -16,7 +16,7 @@
     .modules-left, 
     .modules-center, 
     .modules-right {
-      background: @base;
+      background: #eee8d5;
     }
 
     .modules-center,
@@ -25,11 +25,11 @@
     }
 
     #workspaces button.active {
-      background-color: @lavender;
+      background-color: #d33682;
     }
 
     #custom-arrow {
-      color:  @lavender;
+      color:  #d33682;
     }
   '';
 
