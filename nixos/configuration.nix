@@ -12,7 +12,8 @@ let
       vimrcConfig.customRC = ''
       set termguicolors
       set relativenumber
-      set nowrap
+      set number
+      set cursorline
       set incsearch
       set hlsearch
       syntax enable
@@ -86,7 +87,13 @@ in
     curl
     git
     coreutils-full
+    wireshark
   ];
+
+  programs.wireshark = {
+    enable = true;
+    dumpcap.enable = true;
+  };
 
   # virtualization
   programs.virt-manager.enable = true;
@@ -100,6 +107,7 @@ in
   users.users.box = {
     isNormalUser = true;
     extraGroups = [
+      "wireshark"
       "wheel"
       "networkmanager"
     ];

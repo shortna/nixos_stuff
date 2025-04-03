@@ -53,7 +53,7 @@ in
     settings = {
       enable_audio_bell = false;
       mouse_hide_wait = 2;
-      copy_on_select = "yes";
+      copy_on_select = "no";
     };
   };
 
