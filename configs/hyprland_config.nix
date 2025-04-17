@@ -14,6 +14,7 @@
       force_default_wallpaper = 0
       disable_splash_rendering = true
       disable_hyprland_logo = true
+      middle_click_paste = false
     }
 
     general {
@@ -133,6 +134,9 @@
 
     bind = $mainMod SHIFT, SPACE, togglefloating,
     bind = $mainMod, f, fullscreen
+
+    bind = $mainMod, S, togglespecialworkspace, magic
+    bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow

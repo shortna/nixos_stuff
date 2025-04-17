@@ -51,6 +51,7 @@ in
     font = { name = font_name; size = 11; };
     themeFile = "Solarized_Light";
     settings = {
+      confirm_os_window_close = 0;
       enable_audio_bell = false;
       mouse_hide_wait = 2;
       copy_on_select = "no";
@@ -90,7 +91,7 @@ in
 
     # misc
     adwaita-icon-theme
-    wine
+    lutris-free
   ];
 
   programs.fish = {

@@ -102,16 +102,19 @@
     "memory" = {
       format = "mem: {percentage}%";
       interval = 3;
+      tooltip = false;
     };
 
     "backlight" = {
       device = "amdgpu_bl0";
       format = "light: {percent}%";
+      tooltip = false;
     };
 
     "battery" = {
       bat = "BAT1";
       format = "battery: {capacity}%";
+      tooltip = false;
     };
 
     "custom/arrow" = {
