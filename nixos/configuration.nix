@@ -88,6 +88,7 @@ in
     git
     coreutils-full
     wireshark
+    docker
   ];
 
   programs.wireshark = {
@@ -102,6 +103,10 @@ in
   services.qemuGuest.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   services.spice-vdagentd.enable = true;
+
+  # docker
+  virtualisation.docker.enable = true;
+  users.users.box.extraGroups = [ "docker" ];
 
   users.defaultUserShell = pkgs.fish;
   users.users.box = {
