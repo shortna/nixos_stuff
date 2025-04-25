@@ -106,12 +106,12 @@ in
 
   # docker
   virtualisation.docker.enable = true;
-  users.users.box.extraGroups = [ "docker" ];
 
   users.defaultUserShell = pkgs.fish;
   users.users.box = {
     isNormalUser = true;
     extraGroups = [
+      "docker" 
       "wireshark"
       "wheel"
       "networkmanager"
