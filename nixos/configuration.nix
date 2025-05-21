@@ -10,7 +10,6 @@ let
         opt = [];
       };
       vimrcConfig.customRC = ''
-      set termguicolors
       set relativenumber
       set number
       set cursorline
