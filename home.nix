@@ -59,7 +59,11 @@ in
   };
 
   programs.bemenu.enable = true;
-  programs.zoxide = { enable = true; enableFishIntegration= true; };
+  programs.zoxide = {
+     enable = true;
+     enableFishIntegration= true;
+     options = [ "--cmd j" ];
+  };
   home.packages = with pkgs; [
     # apps
     steam
