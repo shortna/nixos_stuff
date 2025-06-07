@@ -69,6 +69,7 @@ in
     enable = true;
     xwayland.enable = true;
   };
+  programs.steam.enable = true;
 
   environment.variables = { EDITOR = "vim"; };
 
@@ -104,7 +105,7 @@ in
   services.spice-vdagentd.enable = true;
 
   # docker
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
 
   users.defaultUserShell = pkgs.fish;
   users.users.box = {
@@ -185,10 +186,6 @@ in
     enable = true;
     touchpad.tapping = true;
   };
-
-  # automatic updating
-  system.autoUpgrade.enable  = true;
-  system.autoUpgrade.dates = "weekly";
 
   # automatic cleanup
   nix.gc.automatic = true;

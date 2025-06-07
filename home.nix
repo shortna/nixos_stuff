@@ -48,7 +48,10 @@ in
 
   programs.kitty = {
     enable = true;
-    font = { name = font_name; size = 11; };
+    font = {
+      name = font_name;
+      size = 11;
+    };
     themeFile = "Solarized_Light";
     settings = {
       confirm_os_window_close = 0;
@@ -60,13 +63,12 @@ in
 
   programs.bemenu.enable = true;
   programs.zoxide = {
-     enable = true;
-     enableFishIntegration= true;
-     options = [ "--cmd j" ];
+    enable = true;
+    enableFishIntegration = true;
+    options = [ "--cmd j" ];
   };
   home.packages = with pkgs; [
     # apps
-    steam
     gnome-secrets
     pcmanfm
     thunderbird
