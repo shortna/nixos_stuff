@@ -15,6 +15,7 @@ let
       set cursorline
       set incsearch
       set hlsearch
+      set expandtab
       syntax enable
       set background=light
       colorscheme solarized
@@ -170,7 +171,9 @@ in
     alsa.enable = true;
   };
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+  };
 
   services.smartd = {
     enable = true;
