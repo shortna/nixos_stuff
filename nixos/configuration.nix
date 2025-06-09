@@ -71,6 +71,7 @@ in
     xwayland.enable = true;
   };
   programs.steam.enable = true;
+  programs.ssh.startAgent = true;
 
   environment.variables = { EDITOR = "vim"; };
 
