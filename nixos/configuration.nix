@@ -3,22 +3,23 @@
   ...
 }:
 let
-  vimPkg =  ((pkgs.vim_configurable.override {  }).customize{
+  vimPkg = (
+    (pkgs.vim_configurable.override { }).customize {
       name = "vim";
       vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
         start = [ solarized ];
-        opt = [];
+        opt = [ ];
       };
       vimrcConfig.customRC = ''
-      set relativenumber
-      set number
-      set cursorline
-      set incsearch
-      set hlsearch
-      set expandtab
-      syntax enable
-      set background=light
-      colorscheme solarized
+        set relativenumber
+        set number
+        set cursorline
+        set incsearch
+        set hlsearch
+        set expandtab
+        syntax enable
+        set background=light
+        colorscheme solarized
       '';
     }
   );
@@ -57,7 +58,7 @@ in
     doc.enable = true;
     info.enable = true;
     nixos.enable = true;
-    man = { 
+    man = {
       enable = true;
       generateCaches = false;
       man-db.enable = true;
@@ -73,9 +74,11 @@ in
   programs.steam.enable = true;
   programs.ssh.startAgent = true;
 
-  environment.variables = { EDITOR = "vim"; };
+  environment.variables = {
+    EDITOR = "vim";
+  };
 
-  fonts.packages = with pkgs; [nerd-fonts.jetbrains-mono];
+  fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
   environment.systemPackages = with pkgs; [
     vimPkg
     glibcLocalesUtf8
@@ -113,7 +116,7 @@ in
   users.users.box = {
     isNormalUser = true;
     extraGroups = [
-      "docker" 
+      "docker"
       "wireshark"
       "wheel"
       "networkmanager"
