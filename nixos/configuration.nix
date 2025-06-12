@@ -67,6 +67,8 @@ in
 
   programs.fish.enable = true;
   programs.dconf.enable = true;
+
+  programs.niri.enable = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -80,6 +82,7 @@ in
 
   fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
   environment.systemPackages = with pkgs; [
+    xwayland-satellite
     vimPkg
     glibcLocalesUtf8
     glibcLocales
@@ -120,6 +123,8 @@ in
       "wireshark"
       "wheel"
       "networkmanager"
+      "video"
+      "input"
     ];
   };
 
