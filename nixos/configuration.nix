@@ -67,14 +67,12 @@ in
 
   programs.fish.enable = true;
   programs.dconf.enable = true;
-
   programs.niri.enable = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
   programs.steam.enable = true;
-  programs.ssh.startAgent = true;
 
   environment.variables = {
     EDITOR = "vim";
@@ -95,14 +93,11 @@ in
     curl
     git
     coreutils-full
-    wireshark
     docker
   ];
 
-  programs.wireshark = {
-    enable = true;
-    dumpcap.enable = true;
-  };
+  # docker
+  virtualisation.docker.enable = false;
 
   # virtualization
   programs.virt-manager.enable = true;
@@ -111,9 +106,6 @@ in
   services.qemuGuest.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   services.spice-vdagentd.enable = true;
-
-  # docker
-  virtualisation.docker.enable = false;
 
   users.defaultUserShell = pkgs.fish;
   users.users.box = {
@@ -159,7 +151,7 @@ in
 
   hardware = {
     bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
+    bluetooth.powerOnBoot = false;
 
     graphics = {
       enable = true;
@@ -180,6 +172,7 @@ in
     alsa.enable = true;
   };
 
+  programs.ssh.startAgent = true;
   services.openssh = {
     enable = true;
   };
@@ -192,6 +185,7 @@ in
       }
     ];
   };
+  services.gvfs.enable = true;
 
   # Enable touchpad support
   services.libinput = {
@@ -199,10 +193,6 @@ in
     touchpad.tapping = true;
   };
 
-  # automatic cleanup
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-then 7d";
   nix.settings.auto-optimise-store = true;
 
   # DO NOT TOUCH
